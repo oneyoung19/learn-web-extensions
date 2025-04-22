@@ -18,14 +18,18 @@
       "js": ["src/scripts/content.js"],
       "matches": [
         "https://developer.chrome.com/docs/extensions/*",
-        "https://developer.chrome.com/docs/webstore/*"
+        "https://developer.chrome.com/docs/webstore/*",
+        "https://developer.chrome.com/docs/extensions/reference/*"
       ]
     }
   ],
   "background": {
-    "service_worker": "src/scripts/background.js"
+    // "service_worker": "src/scripts/background.js",
+    "service_worker": "src/scripts/service-worker.js",
+    "type": "module"
   },
-  "permissions": ["activeTab", "scripting"],
+  "permissions": ["activeTab", "scripting", "storage", "alarms"],
+  "host_permissions": ["https://chrome.dev/f/*"],
   "commands": {
     "_execute_action": {
       "suggested_key": {
@@ -33,5 +37,9 @@
         "mac": "Command+B"
       }
     }
+  },
+  "minimum_chrome_version": "102",
+  "omnibox": {
+    "keyword": "api"
   }
 }
